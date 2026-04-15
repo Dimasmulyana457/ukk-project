@@ -103,7 +103,7 @@ Route::middleware(['auth', 'role:petugas'])
          Route::get('/laporan', [LaporanController::class, 'index'])
         ->name('laporan.index');
 
-        Route::get('/laporan/export', [PetugasLaporanController::class, 'export'])
+        Route::get('/laporan/export', [LaporanController::class, 'export'])
         ->name('laporan.export');
 
         

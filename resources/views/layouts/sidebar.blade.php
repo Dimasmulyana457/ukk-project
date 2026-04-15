@@ -16,7 +16,7 @@
         $role = $user->role;
     @endphp
 
-    <div class="flex min-h-screen bg-linear-to-br from-purple-50 via-blue-50 to-pink-50">
+    <div class="flex h-screen overflow-hidden bg-linear-to-br from-purple-50 via-blue-50 to-pink-50">
 
         {{-- Overlay (mobile) --}}
         <div x-cloak x-show="open" x-transition.opacity
@@ -27,15 +27,17 @@
         <aside 
             x-cloak
             :class="open ? 'translate-x-0' : '-translate-x-full'"
-            class="fixed z-[60] inset-y-0 left-0 w-64 bg-white shadow-xl transform lg:translate-x-0 lg:static lg:inset-0 transition-transform duration-300 flex flex-col">
+            class="fixed z-[60] inset-y-0 left-0 w-64 h-screen bg-white shadow-xl transform lg:translate-x-0 lg:static lg:inset-0 transition-transform duration-300 flex flex-col overflow-y-auto">
             
             {{-- Logo --}}
             <div class="p-6 border-b border-gray-100 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">=</span>
+                    <div class="w-20 h-10 rounded-lg flex items-center justify-center overflow-hidden">
+                        <img src="{{ asset('images/logo1.png') }}" 
+                            alt="Logo" 
+                            class="w-full h-full object-contain">
                     </div>
-                    <span class="text-xl font-bold text-gray-800">books</span>
+                    <span class="text-xl font-bold text-gray-800">Chabooks</span>
                 </div>
 
                 {{-- Close button (mobile) --}}
@@ -161,7 +163,7 @@
                     </a>
 
                     <a href="{{ route('user.riwayat') }}"
-                       class="flex items-center space-x-3 px-4 py-3 {{ request()->is('user/riwayat-peminjaman') ? 'text-indigo-600 bg-indigo-50 rounded-lg border-l-4 border-indigo-600' : 'text-gray-600 hover:bg-gray-50 rounded-lg transition-colors' }}">
+                       class="flex items-center space-x-3 px-4 py-3 {{ request()->is('user/riwayat') ? 'text-indigo-600 bg-indigo-50 rounded-lg border-l-4 border-indigo-600' : 'text-gray-600 hover:bg-gray-50 rounded-lg transition-colors' }}">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                         </svg>
@@ -185,9 +187,9 @@
         </aside>
 
         {{-- Main Content --}}
-        <main class="flex-1 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto h-screen">
             {{-- Header --}}
-            <header class="bg-white shadow-sm">
+            <header class="bg-white shadow-sm sticky top-0 z-30">
                 <div class="px-4 lg:px-8 py-4 flex items-center justify-between">
 
                     {{-- LEFT --}}
@@ -201,18 +203,10 @@
                             </svg>
                         </button>
 
-                        <input type="text" placeholder="Cari..."
-                            class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-40 lg:w-80">
                     </div>
 
                     {{-- RIGHT --}}
                     <div class="flex items-center space-x-4">
-                        <button class="p-2 hover:bg-gray-100 rounded-lg">
-                            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                            </svg>
-                        </button>
 
                         <div @click="openProfil = true" class="flex items-center space-x-3 cursor-pointer hover:bg-gray-100 p-2 rounded-lg transition">
                             <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center">
