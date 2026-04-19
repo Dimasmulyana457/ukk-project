@@ -157,10 +157,14 @@
                                     <td class="px-4 py-3">
                                         {{ \Carbon\Carbon::parse($item->tanggal_kembali)->format('d M Y') }}
                                     </td>
+                                    @php
+                                        $terlambat = \Carbon\Carbon::parse($item->tanggal_kembali)->lt(now()->startOfDay());
+                                    @endphp
+
                                     <td class="px-4 py-3">
                                         <span class="px-3 py-1 rounded-full text-xs font-semibold
-                                            {{ $item->tanggal_kembali < now() ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600' }}">
-                                            {{ $item->tanggal_kembali < now() ? 'Terlambat' : 'Dipinjam' }}
+                                            {{ $terlambat ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600' }}">
+                                            {{ $terlambat ? 'Terlambat' : 'Dipinjam' }}
                                         </span>
                                     </td>
                                 </tr>
